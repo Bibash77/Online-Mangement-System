@@ -22,7 +22,7 @@ import {TimeOutPopUpComponent} from '../../time-out-pop-up/time-out-pop-up.compo
 })
 export class RequestInterceptor implements HttpInterceptor {
 
-    tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+    tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
     private isTokenRefreshing = false;
 
     constructor(
@@ -91,7 +91,7 @@ export class RequestInterceptor implements HttpInterceptor {
     private handleHttpResponseError(request: HttpRequest<any>, next: HttpHandler) {
         if (!this.isTokenRefreshing) {
             this.isTokenRefreshing = true;
-            this.tokenSubject.next(null);
+            this.tokenSubject.next('');
 
             return this.getNewRefreshToken().pipe(
                 switchMap((tokenResponse: any) => {

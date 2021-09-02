@@ -4,40 +4,41 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {
-    NbAccordionModule,
-    NbActionsModule,
-    NbAlertModule,
-    NbBadgeModule,
-    NbButtonModule,
-    NbCalendarKitModule,
-    NbCalendarModule,
-    NbCalendarRangeModule,
-    NbCardModule,
-    NbCheckboxModule,
-    NbContextMenuModule,
-    NbDatepickerModule,
-    NbDialogModule,
-    NbIconModule,
-    NbInputModule,
-    NbLayoutModule,
-    NbListModule,
-    NbMenuModule,
-    NbPopoverModule,
-    NbProgressBarModule,
-    NbRadioModule,
-    NbRouteTabsetModule,
-    NbSearchModule,
-    NbSelectModule,
-    NbSidebarModule,
-    NbSpinnerModule,
-    NbStepperModule,
-    NbTabsetModule,
-    NbThemeModule,
-    NbToastrModule,
-    NbToggleModule,
-    NbTooltipModule,
-    NbUserModule,
-    NbWindowModule
+  DARK_THEME,
+  NbAccordionModule,
+  NbActionsModule,
+  NbAlertModule,
+  NbBadgeModule,
+  NbButtonModule,
+  NbCalendarKitModule,
+  NbCalendarModule,
+  NbCalendarRangeModule,
+  NbCardModule,
+  NbCheckboxModule,
+  NbContextMenuModule,
+  NbDatepickerModule,
+  NbDialogModule,
+  NbIconModule,
+  NbInputModule,
+  NbLayoutModule,
+  NbListModule,
+  NbMenuModule,
+  NbPopoverModule,
+  NbProgressBarModule,
+  NbRadioModule,
+  NbRouteTabsetModule,
+  NbSearchModule,
+  NbSelectModule,
+  NbSidebarModule,
+  NbSpinnerModule,
+  NbStepperModule,
+  NbTabsetModule,
+  NbThemeModule,
+  NbToastrModule,
+  NbToggleModule,
+  NbTooltipModule,
+  NbUserModule,
+  NbWindowModule
 } from '@nebular/theme';
 
 import {
@@ -68,13 +69,12 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
 import { OverlaySpinnerComponent } from './components/overlay-spinner/overlay-spinner.component';
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
-import {ChartModule} from '../chart/chart.module';
 import { JsonParsePipe } from './pipes/json-parse.pipe';
 import { RolesSwitchComponent } from './components/roles-switch/roles-switch.component';
 
 // import {NbSecurityModule} from '@nebular/security';
 
-const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule, CKEditorModule, ChartModule];
+const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule, CKEditorModule];
 
 const NB_MODULES = [
     NbCardModule,
@@ -156,19 +156,13 @@ const PIPES = [
 ];
 
 const NB_THEME_PROVIDERS = [
-    ...NbThemeModule.forRoot(
-        {
-            name: 'default',
-        },
-        [DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME],
+    NbThemeModule.forRoot(
+      {
+        name: 'default',
+      },
+      [ DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME ]
     ).providers,
-    ...NbSidebarModule.forRoot().providers,
-    ...NbMenuModule.forRoot().providers,
-    ...NbDatepickerModule.forRoot().providers,
-    ...NbDialogModule.forRoot().providers,
-    ...NbWindowModule.forRoot().providers,
-    ...NbToastrModule.forRoot().providers
-];
+  ];
 
 @NgModule({
     imports: [...BASE_MODULES, ...NB_MODULES, RouterModule, NgxSpinnerModule],
@@ -177,10 +171,12 @@ const NB_THEME_PROVIDERS = [
     entryComponents: [...ENTRY_COMPONENTS],
 })
 export class ThemeModule {
-    static forRoot(): ModuleWithProviders {
-        return <ModuleWithProviders>{
+    static forRoot(): ModuleWithProviders<ThemeModule> {
+        return <ModuleWithProviders<ThemeModule>>{
             ngModule: ThemeModule,
-            providers: [...NB_THEME_PROVIDERS],
+          providers: [
+            NB_THEME_PROVIDERS
+            ]
         };
     }
 }

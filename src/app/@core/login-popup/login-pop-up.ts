@@ -35,7 +35,7 @@ export class LoginPopUp implements OnInit {
     ngOnInit() {
     }
 
-    async onLogin(dataValue) {
+    async onLogin(dataValue: any) {
         this.isAuthorized = false;
         const data: { email: string, password: string } = dataValue.value;
         data.email = LocalStorageUtil.getStorage().username;
