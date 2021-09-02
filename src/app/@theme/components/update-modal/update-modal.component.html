@@ -1,0 +1,16 @@
+<nb-card class="text-center m-0" [nbSpinner]="spinner"
+         nbSpinnerStatus="primary"
+         nbSpinnerSize="large">
+    <nb-card-header>
+        <a (click)="closeModal()" aria-hidden="true" class="close cursor">&times;</a>
+    </nb-card-header>
+    <nb-card-body>
+        Are you sure to change the status to <b>{{data.enableEligibility !== undefined ?
+        (data.enableEligibility === 'true' ? 'ENABLE' : 'DISABLE') : data.status}}</b>?
+    </nb-card-body>
+    <nb-card-footer class="text-right">
+            <button nbButton outline (click)="closeModal()" class="btn btn-flat btn-sm" type="button">No
+            </button>
+            <button nbButton class="btn btn-flat btn-sm cursor" type="button" (click)="updateStatus()">Yes</button>
+    </nb-card-footer>
+</nb-card>
